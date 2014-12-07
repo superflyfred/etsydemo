@@ -1,0 +1,28 @@
+ before_action :authenticate_user!
+
+<div class="row">
+  <% @listings.each do |listing| %>
+  <div class="col-md-3">
+   <div class="thumbnail">
+      <%= image_tag listing.image.url %> 
+      <div class="caption">
+        <h3> <%= listing.name %> </h3> <br>
+        <p> <%= number_to_currency (listing.price) %> </p> <br>
+        <%= link_to 'Show', listing , class: "btn btn-link" %> <br>
+        <%= link_to 'Edit', edit_listing_path(listing) , class: "btn btn-link" %> <br>
+
+        
+         <%= link_to  listing, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-link" do %> 
+         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <% end %>
+       </div>
+     </div>
+   </div>
+  <% end %>
+</div>
+
+
+<br>
+
+<%= link_to 'New Listing', new_listing_path , class: "btn btn-link" %>
+
